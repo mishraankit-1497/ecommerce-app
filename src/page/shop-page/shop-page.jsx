@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CollectionPreview from "../../components/collections/collections";
 import SHOP_DATA from "./shop-data";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ShopPage = () => {
-  const params = useParams();
-  const shopData = params?.routeName
-    ? SHOP_DATA.filter((x) => x.routeName == params.routeName)
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const category = queryParams.get("category");
+  const shopData = category
+    ? SHOP_DATA.filter(
+        (data) => data.routeName.toLowerCase() === category.toLowerCase()
+      )
     : SHOP_DATA;
-
   return (
     <>
       {shopData.map((data) => (
-        <CollectionPreview key={data.id} collections={data} />
+        <CollectionPreview
+          key={data.id}
+          collections={
+            category ? data : { ...data, items: data.items.slice(0, 4) }
+          }
+        />
       ))}
     </>
   );

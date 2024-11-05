@@ -6,16 +6,13 @@ import "./collections.scss";
 const CollectionPreview = ({ collections }) => {
   return (
     <div className="collection-preview">
-      <Link to={`/shop/${collections.routeName}`}>
+      <Link to={`/shop?category=${collections.routeName}`}>
         <h1>{collections.title}</h1>
       </Link>
       <div className="preview">
-        {collections?.items?.map(
-          (collection, index) =>
-            index < 4 && (
-              <CollectionItem key={collection.id} item={collection} />
-            )
-        )}
+        {collections?.items?.map((collection, index) => (
+          <CollectionItem key={collection.id} item={collection} />
+        ))}
       </div>
     </div>
   );

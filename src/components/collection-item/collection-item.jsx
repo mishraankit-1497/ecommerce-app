@@ -10,8 +10,8 @@ const CollectionItem = ({ item }) => {
       </div>
       <div className="collection-footer">
         <span className="name">{item.name}</span>
-        <span className="price">{item.price}</span>
-        <CustomButton>Add to Cart</CustomButton>
+        <span className="price">&#36;{item.price}</span>
+        <CustomButton className="custom-button">Add to Cart</CustomButton>
       </div>
     </div>
   );

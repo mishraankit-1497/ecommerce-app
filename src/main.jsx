@@ -4,10 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/header/header.jsx";
 import HomePage from "./page/home-page/home-page.component.jsx";
-import productCategories from "./page/product-categories.js";
 import ShopPage from "./page/shop-page/shop-page.jsx";
-import SignIn from "./page/sign-in/sign-in.jsx";
-const productsCategory = productCategories.sections;
+import AuthenticationContainer from "./page/sign-in/authentication-container.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,15 +14,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage productCategories={productsCategory} />,
+        element: <HomePage/>,
       },
       {
         path: "/shop",
         element: <ShopPage />,
       },
       {
-        path: "/signin",
-        element: <SignIn />,
+        path: "/auth",
+        element: <AuthenticationContainer />,
       },
     ],
   },

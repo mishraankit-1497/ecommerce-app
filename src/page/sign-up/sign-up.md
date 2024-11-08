@@ -36,4 +36,37 @@
           |
     Component unmount
         Effect cleanup executes if applicable
-            
+
+# Axios
+1. Promise based http client for the browser
+2. Makes asynchronous http request to REST endpoints and returns a promise (fulfilled, rejected, pending)
+
+    When component renders 
+            |
+    Component mounts or updates
+        -> It may trigger an API call
+            |
+    Axios request setup
+        -> HTTP method (GET, POST,PUT,DELETE etc.)
+        -> URL - specifying the endpoint you are trying to reach.
+        -> OPTIONS - where request headers, request body, query params etc.
+            |
+    Sending the axios request
+            |
+    Server response
+        -> Server receives the request, processes it & send back to the client. 
+            |
+    Handling the response
+        -> Axios returns a promise
+        -> .then() -> if fulfilled, .catch() => if error occurred
+        Promise chaining
+            |
+    Updating component state
+        -> using useState, setState to store the response data inside the component state.
+        -> Which re-renders th component with passive effect.
+            |
+    Error handling
+        -> if the server response with error 404,500, etc.
+        -> Handle it with try catch
+
+# useForm & useFormState

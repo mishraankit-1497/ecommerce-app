@@ -6,57 +6,79 @@ import "./sign-up.scss";
 import { useForm, useFormState } from "react-hook-form";
 
 const SignUp = () => {
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [displayName, setDisplayName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   // const [errors, setErrors] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       displayName: "",
       email: "",
       password: "",
-      confirmPassword:""
+      confirmPassword: "",
     },
   });
   const { errors } = useFormState({
     control,
   });
 
-  useEffect(() => {
-    const newErrors = {};
-    if (!email) {
-      newErrors.email = "Email is required!";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email address is invalid!";
-    } else if (password.length < 6) {
-      newErrors.password = "Password must be of minimum length 6";
-    }
-    setErrors(newErrors);
-  }, [email, password]);
+  // useEffect(() => {
+  //   const newErrors = {};
+  //   if (!email) {
+  //     newErrors.email = "Email is required!";
+  //   } else if (!/\S+@\S+\.\S+/.test(email)) {
+  //     newErrors.email = "Email address is invalid!";
+  //   } else if (password.length < 6) {
+  //     newErrors.password = "Password must be of minimum length 6";
+  //   }
+  //   // setErrors(newErrors);
+  // }, [email, password]);
 
-  const onSubmit = async ({ displayName, email, password, confirmPassword }) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    if(password != confirmPassword) {
-      alert("Password do not match!")
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   if(password != confirmPassword) {
+  //     alert("Password do not match!")
+  //   }
+  //   if (Object.keys(errors.length === 0)) {
+  //     try {
+  //       const resp = await axios.post("http://localhost:3000/user", {
+  //         displayName,
+  //         email,
+  //         password,
+  //       });
+  //       alert("Sign Up successfull!");
+  //     } catch (err) {
+  //       console.log("Sign up failed", err);
+  //       alert("Sign up failed. Please try again!!");
+  //     }
+  //   } else {
+  //     alert("Please fix the errors before submitting.");
+  //   }
+  //   setIsSubmitting(false);
+  // };
+
+  const submitToApi = async ({ displayName, email, password }) => {
+    try {
+      const resp = await axios.post("http://localhost:3000/user", {
+        displayName,
+        email,
+        password,
+      });
+      alert("User created successfully!");
+    } catch (error) {
+      alert("Error creating user");
     }
-    if (Object.keys(errors.length === 0)) {
-      try {
-        const resp = await axios.post("http://localhost:3000/user", {
-          displayName,
-          email,
-          password,
-        });
-        alert("Sign Up successfull!");
-      } catch (err) {
-        console.log("Sign up failed", err);
-        alert("Sign up failed. Please try again!!");
-      }
-    } else {
-      alert("Please fix the errors before submitting.");
+  };
+
+  const onSubmit = (data) => {
+    const { displayName, email, password, confirmPassword } = data;
+    if (password != confirmPassword) {
+      alert("Password does not match!");
+      return;
     }
-    setIsSubmitting(false);
+    submitToApi({ displayName, email, password });
   };
 
   return (

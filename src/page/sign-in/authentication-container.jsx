@@ -1,7 +1,7 @@
 import React from "react";
 import SignInComponent from "../../components/sign-in/sign-in.component";
-import SignUp from "../sign-up/sign-up";
 import "./authentication-container.scss";
+import SignUp from "../sign-up/sign-up";
 
 const AuthenticationContainer = () => {
   return (

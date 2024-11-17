@@ -71,17 +71,11 @@ button:disabled {
   padding: 12px;
 }
 
-@media screen and (max-width: 768px) {
-  .sign-in {
-    width: 80vw; /* 80% width for smaller screens */
-    padding: 20px; /* Less padding on small screens */
-  }
-
-  .sign-in h2 {
-    font-size: 20px; /* Slightly smaller header text */
-  }
-
-  .sign-in span {
-    font-size: 14px; /* Smaller span text for mobile */
-  }
+.error-notification {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
 }

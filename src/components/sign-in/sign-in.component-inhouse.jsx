@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import CustomButton from "../custom-button/custom-button";
-import Input from "../../components/form-input/form-input";
+import Input from "../form-input/form-input";
 import "./sign-in.scss";
 import axios from "axios";
-const SignInComponent = () => {
+const SignInComponentInHouse = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -53,4 +53,4 @@ const SignInComponent = () => {
   );
 };
 
-export default SignInComponent;
+export default SignInComponentInHouse;

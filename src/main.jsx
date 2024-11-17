@@ -8,6 +8,7 @@ import HomePage from "./page/home-page/home-page.component.jsx";
 import ShopPage from "./page/shop-page/shop-page.jsx";
 import AuthenticationContainer from "./page/sign-in/authentication-container.jsx";
 import store from "./store.js";
+import DataComponentWithLoading from "./components/hoc/hoc.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,16 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <AuthenticationContainer />,
+      },
+      {
+        path: "/true",
+        element: <DataComponentWithLoading isLoading={true} data="Some Data" />,
+      },
+      {
+        path: "/false",
+        element: (
+          <DataComponentWithLoading isLoading={false} data="Some Data" />
+        ),
       },
     ],
   },

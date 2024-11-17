@@ -7,4 +7,3 @@
 6.  dispatch(signUpUser(formData)) -> sends an asynchronous action {signUpUser} to create async thunk payload creator.
 
 # useSelector
-1. 

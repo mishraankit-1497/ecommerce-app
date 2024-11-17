@@ -61,6 +61,7 @@ const SignUp = () => {
           name="displayName"
           value={formData.displayName}
           onChange={handleChange}
+          placeholder="Display name"
         />
         {errors.displayName && (
           <p style={{ color: "red" }}>{errors.displayName}</p>
@@ -72,6 +73,7 @@ const SignUp = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          placeholder="Email address"
         />
         {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
         <Input
@@ -81,6 +83,7 @@ const SignUp = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
+          placeholder="Password"
         />
         {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
         <Input
@@ -90,6 +93,7 @@ const SignUp = () => {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
+          placeholder="Confim Password"
         />
         <CustomButton type="submit">Sign Up</CustomButton>
       </form>

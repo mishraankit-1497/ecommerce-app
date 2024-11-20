@@ -3,16 +3,15 @@ import CollectionItem from "../collection-item/collection-item";
 import { Link } from "react-router-dom";
 import "./collections.scss";
 
-const CollectionPreview = ({ collections }) => {
+const CollectionPreview = ({ collections, category }) => {
+  
   return (
     <div className="collection-preview">
-      <Link to={`/shop?category=${collections.routeName}`}>
-        <h1>{collections.title}</h1>
+      <Link to={`/shop?category=${collections.categoryId}`}>
+        <h1>{category.title}</h1>
       </Link>
       <div className="preview">
-        {collections?.items?.map((collection, index) => (
-          <CollectionItem key={collection.id} item={collection} />
-        ))}
+          <CollectionItem  item={collections} />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import ShopPage from "./page/shop-page/shop-page.jsx";
 import AuthenticationContainer from "./page/sign-in/authentication-container.jsx";
 import store from "./store.js";
 import DataComponentWithLoading from "./components/hoc/hoc.jsx";
+import Checkout from "./page/checkout/checkout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
       {
         path: "/auth",

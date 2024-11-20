@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from "react";
-import CollectionPreview from "../../components/collections/collections";
-import SHOP_DATA from "./shop-data";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import CollectionItem from "../../components/collection-item/collection-item";
+import CollectionPreview from "../../components/collections/collections";
 const ShopPage = () => {
   const [shopData, setShopData] = useState([]);
-  const location = useLocation();
+  const [categories, setCategories] = useState([]);
   const queryParams = new URLSearchParams(location.search);
-  const category = queryParams.get("category");
+  const categoryFromUrl = queryParams.get("category");
 
   useEffect(() => {
     const fetchShopData = async () => {
       try {
+        const categoryResp = await axios.get(
+          "http://localhost:3000/product-categories"
+        );
         const res = await axios.get("http://localhost:3000/shop");
-        if (category) {
-          const filteredData = shopData.filter(
-            (data) => data.routeName.toLowerCase() === category.toLowerCase()
+        setCategories(categoryResp.data);
+        const products = res.data;
+        let filteredProducts = products;
+        if (categoryFromUrl) {
+          filteredProducts = products.filter(
+            (product) => product.categoryId == parseInt(categoryFromUrl)
           );
-          setShopData(filteredData);
-        } else {
-          setShopData(res.data);
         }
+        setShopData(filteredProducts);
       } catch (err) {
         console.log("Error fetching", err.message);
       }
     };
     fetchShopData();
-  }, [category]);
+  }, [categoryFromUrl, shopData]);
 
   return (
     <>
       {shopData.map((data) => (
-        <CollectionPreview
-          key={data.id}
-          collections={
-            category ? data : { ...data, items: data.items.slice(0, 4) }
-          }
-        />
+        <>
+          <CollectionPreview
+            key={data.id}
+            collections={data}
+            category={categories.find((c) => c.id == data.categoryId)}
+          />
+        </>
       ))}
     </>
   );

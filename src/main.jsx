@@ -10,7 +10,10 @@ import AuthenticationContainer from "./page/sign-in/authentication-container.jsx
 import store from "./store.js";
 import DataComponentWithLoading from "./components/hoc/hoc.jsx";
 import Checkout from "./page/checkout/checkout.jsx";
-
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Orders from './page/order/order.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
       {
         path: "/auth",
@@ -46,9 +53,14 @@ const router = createBrowserRouter([
   },
 ]);
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </StrictMode>
+  <>
+    <StrictMode>
+      <Provider store={store}>
+        <PayPalScriptProvider options={{ clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID }}>
+          <RouterProvider router={router} />
+          <ToastContainer position="bottom-right" />
+        </PayPalScriptProvider>
+      </Provider>
+    </StrictMode>
+  </>
 );

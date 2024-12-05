@@ -8,9 +8,13 @@ import {
   updateSigninForm,
   signInUser,
 } from "../../features/signin/signinSlice";
+import { signIn } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignInComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const formData = useSelector((state) => state.signin.formData);
   const errors = useSelector((state) => state.signin.errors);
   const status = useSelector((state) => state.signin.status);
@@ -37,13 +41,16 @@ const SignInComponent = () => {
       dispatch(signInUser(formData))
         .then((resp) => {
           if (typeof resp.payload !== "string") {
-            alert("Sign-in successful!");
+            dispatch(signIn(resp.payload._id));
+            // localStorage.setItem("userId",resp.payload._id)
           } else {
             alert("Invalid credentials");
           }
         })
         .catch((error) => {
           alert(`Sign-in failed: ${error.message}`);
+        }).then(() => {
+          navigate('/')
         });
     }
   };

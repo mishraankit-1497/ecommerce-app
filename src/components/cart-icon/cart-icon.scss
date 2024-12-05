@@ -6,16 +6,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-top: 16px;
 
   .shopping-icon {
     width: 24px;
     height: 24px;
-  }
-
-  .item-count {
-    position: absolute;
-    font-size: 10px;
-    font-weight: bold;
-    bottom: 12px;
   }
 }

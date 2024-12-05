@@ -1,8 +1,9 @@
 import { useState } from "react";
-import ShoppingBagSvg from "../../assets/bag";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import CartDropDown from "../cart-dropdown/cart-dropdown";
 import "./cart-icon.scss";
 import { connect } from "react-redux";
+import { Badge } from "antd";
 
 const CartIcon = ({ itemCount }) => {
   const [hidden, setHidden] = useState(false);
@@ -12,9 +13,10 @@ const CartIcon = ({ itemCount }) => {
   return (
     <>
       <div className="cart-icon" onClick={handleDropDown}>
-        <ShoppingBagSvg className="shopping-icon" />
+        <Badge count={itemCount}>
+          <ShoppingCartOutlined style={{ fontSize: '24px', color: "#fff" }}/>
+        </Badge>
         {hidden ? <CartDropDown /> : ""}
-        <span className="item-count">{itemCount}</span>
       </div>
     </>
   );

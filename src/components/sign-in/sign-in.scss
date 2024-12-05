@@ -1,14 +1,14 @@
 .sign-in {
   width: 30vw;
-  max-width: 400px; /* Prevents it from getting too wide */
-  margin: 0 auto; /* Centers the component horizontally */
-  padding: 40px; /* Adds padding around the form */
+  max-width: 400px; 
+  margin: 0 auto;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff; /* Adds background color */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  background-color: #fff;
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sign-in h2 {
@@ -21,7 +21,7 @@
 .sign-in span {
   font-size: 16px;
   color: #666;
-  margin-bottom: 20px; /* Adds space between text and input fields */
+  margin-bottom: 20px; 
 }
 
 form {
@@ -31,7 +31,7 @@ form {
 input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0; /* Adds space between inputs */
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
@@ -40,8 +40,8 @@ input {
 }
 
 input:focus {
-  border-color: #007BFF; /* Highlight the border on focus */
-  outline: none; /* Remove default focus outline */
+  border-color: #007BFF; 
+  outline: none; 
 }
 
 button {
@@ -58,7 +58,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 button:disabled {
@@ -67,7 +67,7 @@ button:disabled {
 }
 
 .custom-button {
-  width: 100%; /* Ensures button takes full width */
+  width: 100%; 
   padding: 12px;
 }
 

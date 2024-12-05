@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import { BASE_URL, MESSAGE } from "../../constants/constants";
 
 export const signUpUser = createAsyncThunk(
   "signup/signUpUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const resp = await fetch("http://localhost:3000/user", {
+      const resp = await fetch(`${BASE_URL}/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      if (!resp.ok) throw new Error("SignUp failed!");
+      if (!resp.ok) {
+        toast.error(MESSAGE.SIGNUP_FAILURE);
+        throw new Error("SignUp failed!");
+      }
+      toast.success(MESSAGE.SIGNUP_SUCCESS);
       return await resp.json();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -51,7 +57,7 @@ const signUpSlice = createSlice({
           displayName: "",
           email: "",
           password: "",
-          confirmPassword:""
+          confirmPassword: "",
         };
         state.errors = {};
       })

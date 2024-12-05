@@ -13,9 +13,9 @@ const CollectionItem = ({ item }) => {
       </div>
       <div className="collection-footer">
         <span className="name">{item.name}</span>
-        <span className="price">&#36;{item.price}</span>
+        <span className="price" style={{marginBottom:0}}>&#36;{item.price}</span>
         <CustomButton
-          className="custom-button"
+          className="btn btn-active"
           onClick={() => dispatch(addItemToCart(item))}
         >
           Add to Cart

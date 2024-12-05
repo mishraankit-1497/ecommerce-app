@@ -4,6 +4,7 @@ import CustomButton from "../../components/custom-button/custom-button";
 import axios from "axios";
 import "./sign-up.scss";
 import { useForm, useFormState } from "react-hook-form";
+import { BASE_URL } from "../../constants/constants";
 
 const SignUpInHouse = () => {
 
@@ -62,7 +63,7 @@ const SignUpInHouse = () => {
 
   const submitToApi = async ({ displayName, email, password }) => {
     try {
-      const resp = await axios.post("http://localhost:3000/user", {
+      const resp = await axios.post(`${BASE_URL}/user`, {
         displayName,
         email,
         password,

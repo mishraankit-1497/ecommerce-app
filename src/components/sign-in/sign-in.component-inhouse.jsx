@@ -3,6 +3,7 @@ import CustomButton from "../custom-button/custom-button";
 import Input from "../form-input/form-input";
 import "./sign-in.scss";
 import axios from "axios";
+import { BASE_URL } from "../../constants/constants";
 const SignInComponentInHouse = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +11,7 @@ const SignInComponentInHouse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post("http://localhost:3000/signin", {
+      const resp = await axios.post(`${BASE_URL}/signin`, {
         email,
         password,
       });

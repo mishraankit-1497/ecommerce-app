@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL, MESSAGE } from "../../constants/constants";
+import { toast } from "react-toastify";
 
 export const signInUser = createAsyncThunk(
   "signin/signInUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const resp = await fetch("http://localhost:3000/signin", {
+      const resp = await fetch(`${BASE_URL}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -12,8 +14,10 @@ export const signInUser = createAsyncThunk(
         body: JSON.stringify(formData),
       });
       if (!resp.ok) {
+        toast.error(MESSAGE.SIGNIN_FAILURE);
         throw new Error("SignIn failed");
       }
+      toast.success(MESSAGE.SIGNIN_SUCCESS);
       return await resp.json();
     } catch (error) {
       return rejectWithValue(error.message);
